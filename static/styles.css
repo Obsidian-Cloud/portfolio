@@ -1,0 +1,767 @@
+.default-style
+{
+    font-size: 16px;
+    font-family: monospace;
+    /*background-color: rgb(63, 63, 63);*/
+    background-image: url('digi1.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    padding: 0px;
+    margin: 0px;
+
+    border: 4px double silver;
+    border-radius: 10px;
+}
+
+
+/* Basic formatting */
+
+.text-small 
+{
+    font-size: 14px;
+}
+
+.text-large
+{
+    font-size: 20px;
+}
+
+
+#signature
+{
+    padding: 0px 0px 0px 40px;
+}
+
+
+.sig-links:visited, .sig-links:link
+{
+    color: black;
+}
+
+
+
+
+/* //// LAYOUT.HTML //// */
+
+
+/*/////////*/
+/* header */
+/*///////*/
+#nav
+{
+    display: flex;
+    width: 75vw;
+    align-items: center;
+    background-color: rgb(26, 26, 26);
+    border: 1px solid silver;
+    border-radius: 10px;
+    margin: 0 auto;
+    z-index: 99;
+}
+
+#nav a
+{
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+#nav a:link, a:visited
+{
+    color: white;
+}
+
+#nav a:hover
+{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+}
+
+#nav a:active
+{
+    background-color: aqua;
+    color: black;
+}
+
+
+/*///////*/
+/* main */
+/*/////*/
+#layout-main
+{
+    display: block;
+    
+    background-color: rgb(194, 194, 194);
+    border: 5px double rgb(0, 0, 0);
+    border-radius: 40px 40px 10px 10px;   
+    padding: 10px;
+    margin: 1vh auto 1vh auto;
+    width: 85vw;
+    z-index: 99;
+}
+
+#layout-main-title
+{
+    display: flex;
+
+    padding: 0px;
+    margin: 0px;
+    border: 4px dotted limegreen;
+}
+
+
+
+
+
+
+
+/*//////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////*/
+
+/* //// INDEX.HTML //// */
+
+
+
+/*///////*/
+/* main */
+/*/////*/
+#index-main
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 10vh;
+    padding-top: 5vh;
+}
+
+#index-leftside
+{
+    display: inline-block;
+    min-width: 320px;
+    max-width: 650px;
+    padding: 0vh 5vw 0vh 5vw;
+}
+
+@media (min-resolution: 2.5dppx)
+{
+    #index-leftside
+    {
+        display:inline-block;
+        min-width: 320px;
+        max-width: 650px;
+        padding: 0px;
+    }
+
+    .p
+    {
+        font-size: 14px;
+        padding: 0px 4vw 0px 4vw;
+    }
+}
+
+
+
+.hr-responsive
+{
+    border: double;
+    background-color: rgb(0, 0, 0);
+    height: 90%;
+    width: 5px;
+    align-self: center;
+    border-radius: 10px;
+}
+
+@media (max-width: 1800px) 
+{   
+    .hr-responsive 
+    {
+        display: none;
+
+    }                   
+}
+
+
+#index-rightside
+{
+    display: flex;
+    flex-direction: column;
+    
+    max-width: 700px;
+    row-gap: 40px;
+}
+
+#index-blocks-cntr
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    row-gap: 5px;
+}
+
+.block
+{
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid black;
+    padding-bottom: 5px;
+}
+
+.href:visited, .href:link
+{
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+.h5
+{
+    font-size: 18px;
+    margin: 0px;
+    padding: 0px;
+
+}
+
+.h6
+{   
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+}
+
+.ulist
+{
+    margin: 0px;
+    padding: 3px 0px 5px 30px;
+    text-align: left;
+    font-size: 15px;
+}
+
+.ulist-item
+{
+    display: flex;
+    padding-bottom: 2px;
+}
+
+#me
+{
+    background-color: bisque;
+    width: 75px;
+    height: 75px;
+    margin: 0 auto;
+}
+
+#frame
+{
+    background-color: rgb(255, 62, 62);
+    min-width: 125px;
+    width: 15vw;
+
+    margin: 0 auto;
+}
+
+#lang
+{
+    background-color: rgb(194, 145, 39);
+    min-width: 200px;
+    width: 25vw;
+    margin: 0 auto;
+}
+
+#lib
+{
+    background-color: rgb(32, 122, 32);
+    min-width: 275px;
+    width: 35vw;
+    margin: 0 auto;
+
+}
+
+#index-topright
+{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+#index-myportfolio-cntr
+{
+    display: inline-flex;
+    flex-direction: column;
+    padding: 30px 20px 20px 20px;
+    row-gap: 0px;
+
+    background-image: url("folder.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+    
+}
+
+.index-myportfolio
+{
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.index-selectproject
+{
+    font-size: 18px;
+    background-color: rgb(224, 224, 224);
+    padding: 5px 10px 5px 10px;
+    border-radius: 7px;
+    margin: 0px 0px 0px 25px;
+}
+
+.index-list-projects
+{
+    font-size: 18px;
+    padding: 2px 0px 2px 0px;
+    margin: 0px 0px 0px 40px;
+}
+
+.index-list-projects:hover
+{
+    background-color: rgb(243, 243, 243);
+    border-radius: 10px;
+    padding: 2px 0px 2px 15px;
+    margin: auto 30px auto 20px;
+    font-weight: bold;
+}
+
+.index-list-projects:active
+{
+    background-color: rgb(243, 243, 243);
+    border-radius: 10px;
+    padding: 2px 0px 2px 15px;
+    margin: auto 30px auto 20px;
+    font-weight: bold
+}
+
+.hr-cntr
+{
+    padding: 0px 25px 0px 25px;
+}
+
+@media (min-width: 601px)
+{
+    .hr
+    {
+        display: none;
+    }
+}
+
+@media (max-width: 600px )
+{
+    .hr
+    {
+        border: none;
+        height: 3px;
+        background-color: black;
+        min-width: 50px;        
+    }
+}
+
+
+
+/* //// MOVIE_SEARCH.HTML //// */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.warning
+{
+    padding: 0px 25px 0px 25px;
+}
+
+
+.black-text
+{
+    color: rgb(0, 0, 0);
+}
+
+.black-text::placeholder
+{
+    color: black;
+    font-size: 12px;
+}
+
+.lime-text
+{
+    font-family: Verdana;
+    color: rgb(9, 193, 9);
+    width: 80%;
+}
+
+.lime-text::placeholder
+{
+    color: rgba(50, 205, 50, 0.692);
+    font-size: 12px;
+}
+
+#command-input::selection
+{
+    background-color: rgb(255, 255, 255);
+    color: black;
+}
+
+
+input[type="text"]
+{
+    font-size: 14px;
+}
+
+input:focus
+{
+    outline: none;
+}
+
+
+#command-enter-btn
+{
+    color: limegreen;
+    font-size: 20px;
+    padding: 0px 15px 0px 15px;
+    border-radius: 5px;
+    background-color: rgba(128, 128, 128, 0.644);
+    z-index: 99;
+    margin-left: 5px;
+    border: none;
+}
+
+
+
+
+
+
+
+
+
+.project-main
+{
+    display: inline-flex;
+    border: 5px dotted red;
+    
+    
+}
+
+#movie-results
+{
+    width: 35vw;
+}
+
+#movie-search-layout
+{
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    border: 8px dotted pink;
+}
+
+#progress
+{
+    background-color: rgb(136, 136, 136);
+    border-radius: 5px;
+    border-width: 2px;
+    height: 10px;
+    border-color: rgb(24, 24, 24);
+}
+
+
+
+
+
+
+
+
+
+/* //// ORMLABS.HTML //// */
+
+#ormlabs-main
+{
+    display: flex;
+    flex-direction: column;
+}
+
+#ormlabs-h1
+{
+    align-self: center;
+}
+
+#ormlabs-db-cntr
+{
+
+    border: 5px dotted green;
+}
+
+#ormlabs-table {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border: 2px solid #000;
+}
+
+/* THE CELL STRUCTURE */
+.ormlabs-th, .ormlabs-td {
+    border: 1px solid #000;    /* The internal grid lines */
+    padding: 15px;             /* The internal structural spacing */
+    text-align: left;          /* Structural alignment */
+}
+
+#ormlabs-cell
+{
+    text-align: center;
+}
+
+#ormlabs-check
+{
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    border: 12px solid black;
+    border-color: yellow;
+    background-color: red;
+}
+
+#ormlabs-text-field
+{
+    width: 90%;
+}
+
+/* THE HEADER ROW */
+.ormlabs-th {
+    border-bottom: 3px solid #000; /* Structural emphasis on the header */
+    background-color: #dddddd;
+    font-size: 18px;
+}
+
+.ormlabs-type
+{
+    font-size: 14px;
+}
+
+/* TABLE DROPDOWN MENUS */
+#ormlabs-dropdown
+{
+    width: 60px;
+}
+
+h4
+{
+    padding-top: 5px;
+    padding-bottom: 10px;
+    margin: 0;
+}
+
+#dev-panel-summary-cntr
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 25px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    height: 30vh;
+}
+
+#shortcut-panel
+{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 200px;
+    border-radius: 5px;
+    border: 2px solid white;
+    background-color: rgb(59, 59, 59);
+    color: limegreen;
+    box-shadow: 0 0 12px 5px black;
+}
+
+.shortcut-btn
+{
+    /* MATCHES SQUARE BOX GEOMETRY */
+    width: 100%;
+    height: 50px;           /* Same height as your squares */
+    border-radius: 8px;     /* Same smooth corners as your squares */
+    border: 2px solid #5b5b5b; /* Same border thickness as the boxes */
+}
+
+#dev-panel-terminal-cntr
+{
+    width: 500px;
+    max-width: 1200px;
+    padding: 0px;
+    box-shadow: 0 0 10px black;
+    border-radius: 10px;
+}
+
+#dev-panel-cheatsheet
+{
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid white;
+    background-color: rgb(59, 59, 59);
+    color: limegreen;
+    box-shadow: 0 0 12px 5px black;
+    width: 25%;
+}
+
+#terminal-output
+{
+    display: flex;
+    flex-direction: column;
+    height: 30vh;
+    background-color: rgba(0, 0, 0, 0.85);
+    border: 1.5px solid white;
+    border-radius: 10px;
+    justify-content: flex-end;
+
+}
+
+
+#terminal-subscreen
+{
+    color: limegreen;
+    font-family:monospace;
+    background-color: black;
+    margin: 3px 3px 0px 3px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    height: 30vh;
+    padding: 10px;
+}
+
+#terminal-input-area
+{
+    display: flex;
+    align-items: center;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+#terminal-prompt
+{
+    font-weight: bold;
+    color: greenyellow;
+    cursor: default;
+    padding: 0px 0px 0px 15px;
+    margin-right: -20px;
+    z-index: 99;
+}
+
+#terminal-input
+{
+    background-color: rgba(0, 0, 0, 0.692);
+    border-radius: 5px;
+    border: 1px solid white;
+    padding: 4px 0px 4px 25px;
+    border: 1px solid grey;
+}
+
+
+#color-picker-ctnr
+{ 
+    align-self: flex-end;
+    grid-template-columns: auto auto;
+    padding: 10px;
+}
+
+#color-picker-form
+{
+    display: flex;
+    align-items: flex-end;
+    column-gap: 5px;
+    
+}
+
+#color-picker-btn 
+{
+    margin-top: 20px;
+    width: 100%;
+}
+
+.color-picker 
+{
+    /* MATCHES SQUARE BOX GEOMETRY */
+    width: 100%;
+    height: 50px;           /* Same height as your squares */
+    border-radius: 8px;     /* Same smooth corners as your squares */
+    border: 2px solid #5b5b5b; /* Same border thickness as the boxes */
+}
+
+/* MATCHES SQUARE HOVER BEHAVIOR (NO TEXT CHANGE) */
+.color-picker:hover 
+{
+    border-color: #000;    /* Darkens border like a selected box */
+}
+
+#scheme-container 
+{
+    display: flex;
+    gap: 12px;
+    background-color:rgba(96, 96, 96, 0.336);
+    padding: 10px;
+    border-radius: 8px;
+    border: 3px double black;
+}
+
+/* Hide the actual radio circle but keep it functional */
+.scheme-option input 
+{
+    display: none;
+}
+
+/* THE BOX STRUCTURE */
+.scheme-box 
+{
+    width: 50px;
+    height: 50px;
+    border-radius: 8px; /* Smooth corners */
+    border: 2px solid #373737;
+    cursor: pointer;
+}
+
+/* HALF-AND-HALF SPLITS */
+.light { background: linear-gradient(135deg, #F3F4F6 50%, #e2e8f0 50%); }
+.dark { background: linear-gradient(135deg, #383a3d  50%, #111827  50%); }
+
+/* VISUAL FEEDBACK FOR SELECTION */
+.scheme-option input:checked + .scheme-box 
+{
+    border: 3px solid #379335;
+}
+
+
+

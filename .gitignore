@@ -1,0 +1,17 @@
+/flask_session/
+__pycache__
+
+
+# project files incompleted
+movies.db
+movies.csv
+
+/components/interactor/use_cases.py
+
+/projects/functions.py
+/projects/github.py
+/projects/movie.py
+
+/templates/movie_search.html
+/templates/movie_detail.html
+/templates/github.html

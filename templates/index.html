@@ -1,0 +1,159 @@
+{% extends "layout.html" %}
+
+{% block head %}
+
+    <title>Project Selection</title>
+
+{% endblock %}
+
+
+{% block body %}
+    <section>
+    <div id="index-main">
+        <div id="index-leftside">
+            <p class="p" style="font-size: 18px;">
+                <code>Welcome to my portfolio.</code>
+            </p>
+            <p class="p">
+                My portfolio is heavily over-engineered on purpose and is
+                inspired by 'Uncle Bob' and Martin Fowler. I took the 
+                'Clean Architecture' route to showcase my understanding of
+                the separation of concerns inside Enterprise applications 
+                using dependency inversion principles. Above in the navigation
+                bar labeled 'Portfolio Diagram', you can find a 'Clean Architecture'
+                diagram which maps out the entire architectural 
+                structure of my portfolio.<br>
+                <br>
+                You can also view a README for a full run-down on why I 
+                chose the technologies and libraries that I chose for this
+                project. This README can also be found in the above navigation 
+                bar labeled 'Portfolio Diagram'. This README is also 
+                available on github with the open-source code.<br>
+                <br>
+                If you want to view the open-source code for my portfolio,
+                just view the project labeled 'github' on the right side 
+                of the screen.<br>
+                <br>
+                I also do want to point out that I did shift this 'Architecture'
+                a little bit. I added a more robust validation system(cerberus)
+                vs validating against the actual entity model.
+            </p>
+            <p class="p">
+                The project labeled 'ormlabs' on the right side of the screen
+                showcases a few different concepts. To name two distinctly,
+                the full-stack life-cycle and also an abstracted ORM database 
+                management system through interfacing.<br>
+            </p>
+            <p class="p">
+                Everything on this website is hand-crafted by yours truly.<br>
+                <br>
+                For the best experience, a desktop computer is recommended for viewing.
+            </p>
+            <br>
+            <p class="p">Thanks for your time.<br><br>Enjoy!</p>
+            <br>
+            <p id="signature" class="p"><strong>--Keith Baranzini</strong></p>
+            <br>
+            <br>
+            <br>
+            <div style="display: flex; justify-content: center; column-gap: 30px; row-gap: 15px; flex-wrap: wrap">
+                <a class="sig-links" href="https://www.linkedin.com/in/keithbaranzini">linkedin/in/keithbaranzini</a>
+                ObsidianCloud25@gmail.com
+            </div>
+        </div>
+        
+        <div style="display:flex;">
+            <hr class="hr-responsive">
+        </div>
+
+        <div id="index-rightside">
+        
+            <div class="hr-cntr">
+                <hr class="hr">
+            </div>
+
+            <div id="index-topright">
+            <div id="index-myportfolio-cntr">
+                {% if portfolio %}
+                    <section hidden>
+                    <div><h2 class="index-myportfolio">My Portfolio</h2></div>
+                    </section>
+                    <div style="padding: 45px 20px 10px 20px;"><h4 class="index-selectproject">Select a project to view:</h4></div>
+
+                    <ol>
+                        {% for portfolio_project in portfolio  %}
+
+                            <li class="index-list-projects"><a class="href" href="/{{ portfolio_project }}">{{ portfolio_project }}</a></li>
+
+                        {% endfor %}
+                    </ol>
+
+                {% else %}
+            
+                    There are no portfolio projects!
+
+                {% endif %}
+            </div>
+            </div>
+
+
+            <div id="index-blocks-cntr">
+                <div class="block" id="me">
+                    <strong><span class="h6">Me</span></strong><br>
+                    <img src="../static/person.png" alt="logo of simple person" style="height:50px;width:50px">
+
+                </div>
+                <div class="block" id="frame">
+                    <strong><span class="h5">Framework:</span></strong><br>
+                        <ul class="ulist">
+                            <div class="ulist-item"><li><a class="href" target="_blank" href="https://flask-session.readthedocs.io/en/latest/">Flask</a></li></div>
+                        </ul>
+                </div>
+                <div class="block" id="lang">
+                    <strong><span class="h5">Technologies:</span></strong><br>
+                        <div style="display: flex; column-gap: 25px;">
+                        <ul  class="ulist">
+                            <div class="ulist-item"><li><a class="href" target="_blank" href="https://docs.python.org/3/">Python</a></li></div>
+                            <div class="ulist-item"><li><a class="href" target="_blank" href="">SQLite3</a></li></div>
+                            <div class="ulist-item"><li><a class="href" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">Javascript</a></li></div>
+                        </ul>
+                        <ul  class="ulist">
+                            <div class="ulist-item"><li><a class="href" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/HTML">HMTL</a></li></div>
+                            <div class="ulist-item"><li><a class="href" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a></li></div>
+                        </ul>
+                        </div>
+                </div>
+                <div class="block" id="lib">
+                    <strong><span class=h5>Libraries:</span></strong><br>
+                        <div style="display: flex; column-gap: 25px;">
+                        <ul class="ulist">
+                            <div class="ulist-item"><li><a class="href" target="_blank" href="https://docs.sqlalchemy.org/en/20/">SQLAlchemy ORM</a></li></div>
+                            <div class="ulist-item"><li><a class="href" target="_blank" href="">Flask-SocketIO<br>(websockets)</a></li></div>
+                            <div class="ulist-item"><li><a class="href" target="_blank" href="">Flask-JSON</a></li></div>
+                            <div class="ulist-item"><li><a class="href" target="_blank" href="">Flask-Caching</a></li></div>
+                        </ul>
+                        <ul class="ulist">
+                            <div class="ulist-item"><li><a class="href" target="_blank" href="https://pandas.pydata.org/docs/">zope.interface</a></li></div>
+                            <div class="ulist-item"><li><a class="href" target="_blank" href="https://pandas.pydata.org/docs/">zope.component</a></li></div>
+                            <div class="ulist-item"><li><a class="href" target="_blank" href="">Cerberus<br>(validation)</a></li></div>
+                            <div class="ulist-item"><li><a class="href" target="_blank" href="https://pandas.pydata.org/docs/">pandas</a></li></div>
+                        </ul>
+                        </div>
+                </div>
+                Click on any of the items on the pyramid to be taken to documentation related to that item.
+            </div>
+
+        </div>
+
+    </div>
+    </section>
+
+{% endblock %}
+
+
+
+{% block terminal_output %}
+
+    There are no API endpoints on this page!
+
+{% endblock %}

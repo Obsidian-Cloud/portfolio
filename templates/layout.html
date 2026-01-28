@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="eng" class="default-style">
+
+    <head>
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <link rel="stylesheet" href="../static/styles.css">
+        <script type="module" src="../static/js/main.js" defer></script>
+        
+
+        {% block head %}{% endblock %}
+
+    </head>
+
+    
+    <body>
+        
+        <div id="nav">
+            <a id="nav-home" href="/">Home</a>
+
+            <a id="nav-contact-me" href="/contactme">Contact Me</a>
+
+            <a id="nav-review" href="/reviewboard">Review Board</a>
+
+            <a id="nav-portfolio-diagram" href="/portfolio-diagram">Portfolio Diagram</a>
+
+        </div>
+    
+        <main id="layout-main">
+        
+            <div id="layout-main-title">{% block title %}{% endblock %}</div>    
+            
+            <div>
+                {% block body %}{% endblock %}
+            </div>
+        
+        </main>
+
+    </body>
+
+</html>

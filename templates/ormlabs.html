@@ -1,0 +1,112 @@
+{% extends "layout.html" %}
+
+{% block head %}
+
+    <title>Database View</title>
+
+{% endblock %}
+
+
+{% block body %}
+
+    <div id="ormlabs-main">
+        <H1 id="ormlabs-h1">ORM Labs</H1>
+        <div id="ormlabs-db-cntr">
+
+            <form id="ormlabs-submission">
+            <table id="ormlabs-table">
+                <tr>
+                    <thead>
+                        <th class="orblabs-th ormlabs-delete">Select Row:</th>
+                        <th class="ormlabs-th">ID <br><span class="ormlabs-type">(int)</span></th>
+                        <th class="ormlabs-th">Name <br><span class="ormlabs-type">(str)[required]</span></th>
+                        <th class="ormlabs-th">Note <br><span class="ormlabs-type">(str)[optional]</span></th>
+                        <th class="ormlabs-th">Level <br><span class="ormlabs-type">(int)</span></th>
+                        <th class="ormlabs-th">Active <br><span class="ormlabs-type">(bool)</span></th>
+                        <th class="ormlabs-th">Updated at <br><span class="ormlabs-type">(datetime)</span></th>
+                    </thead>
+                </tr>
+
+                <tbody>
+                    <tr>
+                        {% for column in row %}
+                            <td id="ormlabs-cell" class="ormlabs-td">
+                                {{ id }}
+                                <input name="ormlabs-check" id="ormlabs-check" type="checkbox">
+                            </td>
+
+                            <td class="ormlabs-td">
+                                {{ column }}
+                                <input type="hidden" value="{{ column }}">    
+                            </td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+                
+                
+                <tbody>
+                    <tr>
+                        <td class="ormlabs-td"></td>
+                        <td class="ormlabs-td">ID (auto increment)</td>
+                        <td class="ormlabs-td"><input type="text" name="name" id="ormlabs-text-field" class="black-text" placeholder="Enter Name"></td>
+                        <td class="ormlabs-td"><input type="text" name="note" id="ormlabs-text-field" class="black-text" placeholder="Enter Note"></td>
+                        
+                        <td class="ormlabs-td">
+                            <label>Level</label>
+                            <select name="level" id="ormlabs-dropdown">
+                                <option value="0">0</option> 
+                                <option value="1">1</option> 
+                                <option value="2">2</option>
+                        </td>
+
+                        <td class="ormlabs-td">
+                            <label>Active?</label>
+                            <select name="active" id="ormlabs-dropdown">
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                        </td>
+
+                        <td class="ormlabs-td">Updated At (auto)</td>
+                    </tr>
+                </tbody>
+                
+
+            </table>
+            </form>
+
+        </div>
+
+        <div id="dev-panel-summary-cntr"> 
+
+            <div id="shortcut-panel">
+                <form id="shortcut-form" style="width:100%; border:1px solid pink">
+                    <H4>Shortcuts:</H4>
+                    <input type="submit" value="Submit Row" data-shortcut="submit" class="shortcut-btn">
+                    <input type="submit" value="Update Row" data-shortcut="update" class="shortcut-btn">
+                    <input type="submit" value="Delete Row" data-shortcut="delete" class="shortcut-btn">
+                </form>
+            </div>
+
+            <div id="dev-panel-terminal-cntr">
+                <div id="terminal-output">
+                    <div id="terminal-subscreen">
+
+                       404: Not Found
+                        <br>
+                        <br>
+                        (Coming Soon)
+                    </div>
+                    <div id="terminal-input-area">
+                        <span id="terminal-prompt">$</span>
+                        <input type="text" id="terminal-input" class="lime-text" placeholder="enter query here" autofocus size="50">
+                        <span><button type="submit" id="command-enter-btn" data-ormterminal="submit">»</button></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="dev-panel-cheatsheet">
+                <H4>Typical Syntax:</H4> 
+            </div>
+        </div>
+    </div>
+{% endblock %}
