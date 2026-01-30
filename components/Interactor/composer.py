@@ -14,24 +14,26 @@ from components.Interfaces.interfaces import IMapper
 
 class Composer():
     def __init__(self):
-        self.validated = None
+        self.valid = None
+        self.error = None
 
-    def execute_composer(self):              
+    def execute_composer(self):
+                print('execute composer')          
                 json = self.retrieve_json()
-                print('JSON')
                 print(json)
+                self.valid, self.error = self.validate_json(json)
 
-                self.validate_json(json)
-                print('VALIDATED')
-                print(self.validated)
-
-                if self.validated:
+                if self.valid:
+                    print('composer valid')
                     self.execute_json()
-                    self.return_response()
+                    response = self.create_response(self.error)
                     self.clear_instance_cache()
+                    return response
                 else:
+                    print('composer not valid')
+                    response = self.create_response(self.error)
                     self.clear_instance_cache()
-                    self.return_response()
+                    return response
 
     def retrieve_json(self):
         json = _req.request_ds
@@ -40,21 +42,25 @@ class Composer():
         return self.json
 
     def validate_json(self, json):
-        self.validated = None
-
         implementation = getUtility(IValidator)
-        self.validated = implementation.validate(json)
-        return self.validated
+        valid, error = implementation.validate(json)
+        return valid, error
 
     def execute_json(self):
         pass
 
-    def return_response(self):
-        pass
+    def create_response(self, error):
+        # create response obj(dict)
+        if error:
+            response = {'error': str(error)}
+            return response
+
+        response = {'not': 69}
+        return response
 
     def clear_instance_cache(self):
-        self.validated = None
-        print('clear instance')
+        self.valid = None
+        self.error = None
 
 
 '''

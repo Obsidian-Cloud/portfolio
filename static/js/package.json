@@ -1,0 +1,23 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "run app.py on your own local server to view my portfolio as it is, which\r is incomplete at the moment. The structure is set in stone though.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Obsidian-Cloud/portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Obsidian-Cloud/portfolio/issues"
+  },
+  "homepage": "https://github.com/Obsidian-Cloud/portfolio#readme",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

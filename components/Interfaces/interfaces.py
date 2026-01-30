@@ -9,15 +9,16 @@ class IValidator(_z.Interface):
     """
     def validate(): # type:ignore
         """Executes the `validator`."""
-        return self.valid # type: ignore
+        return _valid, _error # type: ignore
 
 
 class IComposer(_z.Interface):
     """This `interface` shares a relationship with the `composer` and is
-    implemented by the `controller` to initiate a request.
+    implemented by the `routes` to initiate a request.
     """
     def execute_composer(): # type: ignore
         """Executes the `composer`."""
+        return response #type: ignore
 
 
 class IMapper(_z.Interface):

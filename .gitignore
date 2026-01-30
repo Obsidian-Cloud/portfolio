@@ -6,6 +6,8 @@ __pycache__
 movies.db
 movies.csv
 
+/components/database/movie_search_map.py
+
 /components/interactor/use_cases.py
 
 /projects/functions.py

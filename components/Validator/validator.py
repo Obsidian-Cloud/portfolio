@@ -7,7 +7,7 @@ schema_submit = {
         'type': 'dict',           # Define the type as a dictionary
         'schema': {               # Use 'schema' to define the inner rules
             'ormlabs-check': {'type': 'boolean'},
-            'name': {'type': 'string'},
+            'name': {'empty': False, 'type': 'string'},
             'note': {'type': 'string'},
             'level': {'type': 'string'},
             'active': {'type': 'string'}
@@ -39,7 +39,8 @@ class Validator():
         """
         self.document = document
         self.action = self.get_action(self.document)
-
+        print('validate action: ')
+        print(self.action)
         match self.action:
             case 'delete':
                 print('ACTION: DELETE')
@@ -47,12 +48,13 @@ class Validator():
                 pass
         self.schema = self.set_schema(self.action)
         self.valid = self._validator.validate(self.document, self.schema) # type:ignore
-        
         valid = self.valid
-        print('errors:')
-        print(self._validator.errors) # type: ignore
+        print('VALID??')
+        print(valid)
+        error = self._validator.errors # type: ignore
+        print(error)
         self.clear_instance_cache()
-        return valid
+        return valid, error
 
     def get_action(self, document):
         match document:
@@ -70,7 +72,7 @@ class Validator():
                 return None
 
     def set_schema(self, action):
-        match action:
+        match action: 
             case 'submit':
                 return schema_submit
             case 'update':

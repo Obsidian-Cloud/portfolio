@@ -19,7 +19,9 @@ from components.Interfaces.interfaces import IValidator
 from components.Interfaces.interfaces import IMapper
 from components.Interfaces.interfaces import IResponse
 from components.Interfaces.interfaces import ILoader
+import mimetypes
 
+mimetypes.add_type('text/javascript', '.mjs')
 
 # Construct the Flask app using the apps `__name__` dunder
 app = Flask(__name__, static_folder='')

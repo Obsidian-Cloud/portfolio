@@ -3,7 +3,7 @@
     font-size: 16px;
     font-family: monospace;
     /*background-color: rgb(63, 63, 63);*/
-    background-image: url('digi1.jpg');
+    background-image: url('bg_digital.jpg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-attachment: fixed;
@@ -291,7 +291,7 @@
     padding: 30px 20px 20px 20px;
     row-gap: 0px;
 
-    background-image: url("folder.png");
+    background-image: url("icon_folder.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     
@@ -412,7 +412,7 @@
 
 .black-text::placeholder
 {
-    color: black;
+    color: rgba(0, 0, 0, 0.534);
     font-size: 12px;
 }
 
@@ -425,7 +425,7 @@
 
 .lime-text::placeholder
 {
-    color: rgba(50, 205, 50, 0.692);
+    color: rgba(50, 205, 50, 0.534);
     font-size: 12px;
 }
 
