@@ -1,7 +1,10 @@
 # app.py
+import logging
+
 from flask import Flask
-from flask_session import Session
 from flask_json import FlaskJSON
+
+from sqlalchemy import create_engine
 
 from zope.interface import classImplements
 from zope.component import provideUtility
@@ -17,31 +20,39 @@ from components.Validator import validator
 from components.Interfaces.interfaces import IComposer
 from components.Interfaces.interfaces import IValidator
 from components.Interfaces.interfaces import IMapper
-from components.Interfaces.interfaces import IResponse
 from components.Interfaces.interfaces import ILoader
 import mimetypes
 
 mimetypes.add_type('text/javascript', '.mjs')
 
+logging.basicConfig(filename='portfolio.log')
+
+### App Construction
 # Construct the Flask app using the apps `__name__` dunder
 app = Flask(__name__, static_folder='')
 # Initialize Flask-JSON by passing the Flask app into the constructor
-json = FlaskJSON(app)
+FlaskJSON(app)
 
-## Set config for cookies session
-# Who keeps track of the cookies. In this instance, the local filesystem
-app.config["SESSION_TYPE"] = "filesystem"
-# Cookies expire once the browser is closed
-app.config["SESSION_PERMANENT"] = False
-# unused at the moment
-# Wrap the flask app in a cookies session(database level)
-# Flasks built-in session handles client side cookies
-Session(app)
+### App Configuration
+# cookies(session object)
+app.config['SECRET_KEY'] = 'c34307275db9d9799ce0af21785ae1ead8fbeafcc21152fc5e420b6f5c2b72a1'
+# True for cookies over HTTPS only. False for localhost development.
+app.config['SESSION_COOKIE_SECURE'] = False
+# cookies expiration
+app.config["PERMANENT_SESSION_LIFETIME"] = 86400
 
+### Engine Configuration
+engine = create_engine(
+    'sqlite:///ormlabs.db',
+    connect_args={'autocommit': False}
+)
+        
+### Route Configuration
 # Register blueprints to externally expand the API through other modules.
 app.register_blueprint(std_routes.std_routes_bp)
 app.register_blueprint(io_routes.io_routes_bp)
 
+### Zope Interface Configuration
 # `zope.interface.classImplements` 
 # Link interfaces to the objects that provide
 classImplements(composer.Composer, IComposer)
@@ -57,7 +68,7 @@ validator_instance = validator.Validator()
 provideUtility(validator_instance, IValidator)
 orm_labs_map_instance = orm_labs_map.Map()
 provideUtility(orm_labs_map_instance, ILoader)
-mapper_instance = mapper.Mapper()
+mapper_instance = mapper.Mapper(engine)
 provideUtility(mapper_instance, IMapper)
 #response_instance = io_routes._Response()
 #provideUtility(response_instance, IResponse)

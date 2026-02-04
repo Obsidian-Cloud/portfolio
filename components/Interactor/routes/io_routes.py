@@ -1,6 +1,7 @@
 # io_routes.py
 from time import ctime
 
+from flask import session
 from flask import Blueprint
 from flask import request
 
@@ -12,11 +13,8 @@ from zope.component import getUtility
 from components.Interactor import request as _req
 from components.Interfaces.interfaces import IComposer
 
-# The use-case category for CRUD API operations
-category = 'crud'
 now = ctime()
 io_routes_bp = Blueprint('io_routes', __name__)
-
 
 
 @io_routes_bp.route('/api/insert-row/', methods=['POST'])
@@ -24,11 +22,18 @@ io_routes_bp = Blueprint('io_routes', __name__)
 def insert_row():
     if request.method == 'POST':
         data = request.get_json()
+        print('DATA')
+        print(data)
+        data['payload']['user_cookie'] = session['user_cookie']
+        # implementation below this comment is completely plug-n-play into
+        # different API frameworks. no other component knows about Flask.
         _req.request_ds = data
         implementation = getUtility(IComposer)
-        implementation.execute_composer()
-        return json_response(test=12)
-    return json_response(test=12)
+        _response = implementation.execute_composer()
+        if 'error' in _response:
+            return (_response, 422)
+        return (_response, 201)
+    return json_response(405)
 
 
 @io_routes_bp.route('/api/update-row/', methods=['POST'])
@@ -36,12 +41,15 @@ def insert_row():
 def update_row():
     if request.method == 'POST':
         data = request.get_json()
+        data['payload']['user_cookie'] = session['user_cookie']
         _req.request_ds = data
         implementation = getUtility(IComposer)
-        response = implementation.execute_composer()
-        if 'error' in response:
-            return (response, 422)
-        return (response, 201)
+        _response = implementation.execute_composer()
+        print('RESPONSE')
+        print(_response)
+        if 'error' in _response:
+            return (_response, 422)
+        return (_response, 201)
     return json_response(405)
 
 
@@ -50,8 +58,11 @@ def update_row():
 def delete_row():
     if request.method == 'POST':
         data = request.get_json()
+        data['payload']['user_cookie'] = session['user_cookie']
         _req.request_ds = data
         implementation = getUtility(IComposer)
-        implementation.execute_composer()
-        return json_response(test=12)
-    return json_response(test=12)
+        _response = implementation.execute_composer()
+        if 'error' in _response:
+            return (_response, 422)
+        return (_response, 201)
+    return json_response(405)

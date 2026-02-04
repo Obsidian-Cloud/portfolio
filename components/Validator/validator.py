@@ -4,23 +4,47 @@ from cerberus import Validator as _V
 schema_submit = {
     'action': {'type': 'string'},
     'payload': {
-        'type': 'dict',           # Define the type as a dictionary
-        'schema': {               # Use 'schema' to define the inner rules
-            'ormlabs-check': {'type': 'boolean'},
+        'type': 'dict',
+        'schema': {
             'name': {'empty': False, 'type': 'string'},
             'note': {'type': 'string'},
-            'level': {'type': 'string'},
-            'active': {'type': 'string'}
+            'level': {'type': 'integer'},
+            'active': {'type': 'boolean'},
+            'user_cookie': {'type': 'string'}
         }
     }
 }
 
 schema_update = {
-    'action': {'type': 'boolean'}
+    'action': {'type': 'string'},
+    'payload': {
+        'type': 'dict',
+        'schema': {
+            # the `ormlabs-check`(checkbox) carries with it the id of the
+            # row to be deleted. this way, multiple attributes dont have
+            # to be managed to accomplish the same goal. 
+            'ormlabs-check': {'type': 'integer'},
+            'name': {'empty': False, 'type': 'string'},
+            'note': {'type': 'string'},
+            'level': {'type': 'integer'},
+            'active': {'type': 'boolean'},
+            'user_cookie': {'type': 'string'}
+        }
+    }
 }
 
 schema_delete = {
-    
+    'action': {'type': 'string'},
+    'payload': {
+        'type': 'dict',
+        'schema': {
+            'ids': {
+                'type': 'list',
+                'schema': {'type': 'integer'}
+            },
+            'user_cookie': {'type': 'string'}
+        }
+    }
 }
 
 class Validator():
@@ -39,19 +63,11 @@ class Validator():
         """
         self.document = document
         self.action = self.get_action(self.document)
-        print('validate action: ')
-        print(self.action)
-        match self.action:
-            case 'delete':
-                print('ACTION: DELETE')
-            case _:
-                pass
         self.schema = self.set_schema(self.action)
         self.valid = self._validator.validate(self.document, self.schema) # type:ignore
         valid = self.valid
-        print('VALID??')
-        print(valid)
         error = self._validator.errors # type: ignore
+
         print(error)
         self.clear_instance_cache()
         return valid, error
@@ -72,11 +88,17 @@ class Validator():
                 return None
 
     def set_schema(self, action):
-        match action: 
+        print('match Action: ')
+        match action:
             case 'submit':
+                print('submit')
                 return schema_submit
             case 'update':
+                print('update')
                 return schema_update
+            case 'delete':
+                print('delete')
+                return schema_delete
 
     def clear_instance_cache(self):
         self.valid = None

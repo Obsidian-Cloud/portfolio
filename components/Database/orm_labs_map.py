@@ -6,23 +6,25 @@ from sqlalchemy import Integer
 from sqlalchemy import String
 from sqlalchemy import Boolean
 from sqlalchemy import DateTime
+from sqlalchemy import func
 from sqlalchemy.orm import registry
 
 metadata = MetaData()
 
-orm_labs_table = Table(
-    'orm_labs',  metadata,
-    Column('lab_id', Integer, primary_key=True, autoincrement=True),
+ormlabs_users = Table(
+    'ormlabs_users',  metadata,
+    Column('id', Integer, primary_key=True, autoincrement=True),
+    Column('user_cookie', String),
     Column('name', String),
-    Column('note', Integer),
+    Column('note', String),
     Column('level', Integer),
-    Column('active', Boolean),
-    Column('updated', DateTime),
+    Column('active', Integer),
+    Column('updated', DateTime, server_default=func.now()),
 )
 
 class Map():
     @staticmethod
     def start_mapper(model):
         mapper_registry = registry()
-        mapper_registry.map_imperatively(model, orm_labs_table)
+        mapper_registry.map_imperatively(model, ormlabs_users)
         print('mapper started')

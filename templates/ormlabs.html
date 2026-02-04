@@ -44,9 +44,23 @@
                 </tbody>
                 
                 
-                <tbody>
+                <tbody id="ormlabs-table-body">
+                    {% for row in rows %}
+                    <tr class="ormlabs-tr" id="row-{{ row.id }}">
+                        <td class="ormlabs-td">
+                            <input type="checkbox" class="ormlabs-delete-checkbox" value="{{ row.id }}">
+                        </td>
+                        <td class="ormlabs-td">{{ row.id }}</td>
+                        <td class="ormlabs-td">{{ row.name }}</td>
+                        <td class="ormlabs-td">{{ row.note }}</td>
+                        <td class="ormlabs-td">{{ row.level }}</td>
+                        <td class="ormlabs-td">{{ "True" if row.active else "Flase" }}</td>
+                        <td class="ormlabs-td">{{ row.updated }}</td>
+                    </tr>
+                    {% endfor %}
+
                     <tr>
-                        <td class="ormlabs-td"></td>
+                        <td class="ormlabs-td"></td> <!-- notice the empty cell here-->
                         <td class="ormlabs-td">ID (auto increment)</td>
                         <td class="ormlabs-td"><input type="text" name="name" id="ormlabs-text-field" class="black-text" placeholder="Enter Name"></td>
                         <td class="ormlabs-td"><input type="text" name="note" id="ormlabs-text-field" class="black-text" placeholder="Enter Note"></td>
@@ -79,7 +93,7 @@
         <div id="dev-panel-summary-cntr"> 
 
             <div id="shortcut-panel">
-                <form id="shortcut-form" style="width:100%; border:1px solid pink">
+                <form id="shortcut-form" style="width:100%">
                     <H4>Shortcuts:</H4>
                     <input type="submit" value="Submit Row" data-shortcut="submit" class="shortcut-btn">
                     <input type="submit" value="Update Row" data-shortcut="update" class="shortcut-btn">
@@ -106,7 +120,16 @@
             </div>
             
             <div id="dev-panel-cheatsheet">
-                <H4>Typical Syntax:</H4> 
+                <H4>Database Notes:</H4>
+                    <list id="ormlabs-db-notes">
+                        <li>`Name` must be a string. (eg., Dave)</li>               
+                        <li>Cannot update multiple rows at once. Only one row may be updated at a time. (just wasnt as important with time constraints)</li>
+                        <li>Can delete multiple rows at once.</li>
+                        <li>Cookies sessions last 24 hours. This means you'll have 
+                            access to your database entries for 24 hours before your
+                            cookie token gets refreshed.
+                        </li>
+                    </list>
             </div>
         </div>
     </div>

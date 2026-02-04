@@ -13,9 +13,9 @@ export function portData(data) {
 
 
 async function fetchData(url, requestData, action) {
-  try {
-    console.log(url, requestData, action)
-    const response = await fetch(url, {
+    try {
+        console.log(action, url, requestData)
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 "Cache-Control": "no-cache",
@@ -29,22 +29,20 @@ async function fetchData(url, requestData, action) {
                 payload: requestData
             })
         })
-
     console.log(response);
     if (!response.ok) {
-        
-      throw new Error(`HTTP error! Status: ${response.status}`);
+        throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
     // If the response is ok, proceed to parse the JSON and return
     const responseData = await response.json();
     return responseData
 
-  } catch (error) {
-    // Handle any errors that occurred during the fetch operation or in the if block
-    console.error('Fetch error:', error.message);
-    return null
-  }
+    } catch (error) {
+        // Handle any errors that occurred during the fetch operation or in the if block
+        console.error('Fetch error:', error.message);
+        return null
+    }
 };
 
 
@@ -65,31 +63,96 @@ document.addEventListener("DOMContentLoaded", () => {
         const action = event.currentTarget.dataset.shortcut;
         const url = API_URLS[action];
 
+        const requestData = {};
+
+        const parseValue = (val) => {
+            if (val === 'true') return true;
+            if (val === 'false') return false;
+            if (val !== '' && !isNaN(val)) return Number(val);
+            return val;
+        };
+
         if (!url) {
-            console.error(`Unknown action: ${action}`);
-            return;
+            return console.error(`Unknown action: ${action}`);
         }
 
-        const requestData = {};
         document.querySelectorAll('#ormlabs-submission input, #ormlabs-submission select')
             .forEach(input => {
-            if (input.type === 'checkbox') {
-                requestData[input.name] = input.checked; 
-            } else {
-                requestData[input.name] = input.value;
-            }
-        });
-        console.log('Request submitted: ');
-        console.log(action, requestData);
-        console.log(url)
-        const responseData = await fetchData(url, requestData, action);
 
+                console.log(action)
+                
+                switch (action) {
+                    case 'submit':
+                        if (input.type !== 'checkbox') {
+                            requestData[input.name] = parseValue(input.value);
+                        }
+                        break;
+                    
+                    case 'update':
+                        console.log(`Looping: name=${input.name}, value=${input.value}, action=${action}`);
+
+                        if (input.type === 'checkbox') {
+                            if (input.checked) {
+                                requestData[input.name] = parseValue(input.value);
+                            }
+                        } else {
+                            requestData[input.name] = parseValue(input.value);
+                        }
+                        break;
+
+                    case 'delete':
+                        if (input.type === 'checkbox' && input.checked) {
+                            requestData.ids = requestData.ids || [];
+                            requestData.ids.push(parseValue(input.value));
+                        }
+                        break;
+                }
+
+/*
+                if (action === 'submit') {
+                    // checkbox input(row id) is not needed for row inserts.
+                    if (input.type !== 'checkbox') {
+                        requestData[input.name] = parseValue(input.value);
+                    }
+
+                } else if (action === 'update') {
+                    console.log(`Looping: name=${input.name},value=${input.checked} ,value=${input.value}, action=${action}`);
+                    // check to see if checkbox is checked
+                    if (input.type === 'checkbox' && input.checked) {
+                        console.log(input.checked)
+                        // sets the request data input name 'ormlabs-check'
+                        // as the value of the checkbox(row id) for database lookup.
+                        requestData[input.name] = parseValue(input.value);
+                    } else {
+                        // if not a checkbox, simply add the other input values
+                        // to the request data.
+                        requestData[input.name] = parseValue(input.value);
+                    }
+
+                } else if (action === 'delete') {
+                    console.log(`Looping: name=${input.name}, value=${input.value}, action=${action}`);
+                    // only sending the checkbox value. cookies get used
+                    // by flask directly after the request comes through 
+                    // to the api.
+                    if (input.type === 'checkbox') {
+                        requestData[input.name] = parseValue(input.value);
+                    }
+
+                } else {
+                    console.log('HTML button submit action not recognized.')
+                }
+*/
+        });
+
+
+        console.log('Request submitted: ');
+        const responseData = await fetchData(url, requestData, action);
         console.log('Response recieved: ');
         console.log(responseData);
 
         if (responseData !== null) {
             portData(responseData);
         }
-        
+
     });
 })});

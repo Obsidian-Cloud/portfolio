@@ -2,14 +2,12 @@
 {
     font-size: 16px;
     font-family: monospace;
-    /*background-color: rgb(63, 63, 63);*/
     background-image: url('bg_digital.jpg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-attachment: fixed;
     padding: 0px;
     margin: 0px;
-
     border: 4px double silver;
     border-radius: 10px;
 }
@@ -66,6 +64,7 @@
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+    transition: 0.3s;
 }
 
 #nav a:link, a:visited
@@ -86,7 +85,60 @@
     color: black;
 }
 
+/* 1. THE MAIN BUTTON (Regular) */
+.dropbtn {
+    font-family: monospace;
+    background: #1a1a1a;
+    color: white;
+    padding: 16px;
+    border: none;
+    cursor: pointer;
+    font-size: 17px;
+    transition: 0.3s;
+}
 
+/* 2. THE MAIN BUTTON (Hover) */
+.dropbtn:hover {
+    background: white;
+    color: black;
+    border-radius: 10px;
+}
+
+/* 3. THE DROPDOWN LINKS (Regular) */
+.dropdown-content a {
+    font-family: monospace;
+    display: block;
+    background: #1a1a1a;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none; /* Removes link underline */
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+/* 4. THE DROPDOWN LINKS (Hover) */
+.dropdown-content a:hover {
+    background: white;
+    color: black;
+    border-radius: 10px;
+}
+
+/* FUNCTIONAL LOGIC */
+.dropdown { 
+    position: relative; 
+    display: inline-block; 
+}
+
+.dropdown-content { 
+    display: none; 
+    position: absolute; 
+    min-width: 100%; /* Matches width of the "Projects" button */
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content { 
+    display: block; 
+}
 /*///////*/
 /* main */
 /*/////*/
@@ -109,7 +161,6 @@
 
     padding: 0px;
     margin: 0px;
-    border: 4px dotted limegreen;
 }
 
 
@@ -485,7 +536,6 @@ input:focus
     height: 50vh;
     display: flex;
     flex-direction: column;
-    border: 8px dotted pink;
 }
 
 #progress
@@ -518,11 +568,7 @@ input:focus
     align-self: center;
 }
 
-#ormlabs-db-cntr
-{
 
-    border: 5px dotted green;
-}
 
 #ormlabs-table {
     width: 80%;
@@ -538,6 +584,11 @@ input:focus
     border: 1px solid #000;    /* The internal grid lines */
     padding: 15px;             /* The internal structural spacing */
     text-align: left;          /* Structural alignment */
+}
+
+.ormlabs-tr {
+
+    font-size: 18px;
 }
 
 #ormlabs-cell
@@ -636,6 +687,13 @@ h4
     color: limegreen;
     box-shadow: 0 0 12px 5px black;
     width: 25%;
+}
+
+#ormlabs-db-notes
+{
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
 }
 
 #terminal-output
@@ -763,5 +821,30 @@ h4
     border: 3px solid #379335;
 }
 
+
+
+#diagram 
+{
+    height: 100vh;
+    background-image: url('project_diagram.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-attachment:scroll;
+    background-position: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+.sig-linkedin, .sig-gmail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 350px;
+    height: 200px;
+    border: 4px solid black;
+    background-color: #44444442;
+    border-radius: 15px;
+    font-size: 18px;
+}
 
 

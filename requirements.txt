@@ -1,10 +1,6 @@
 Flask
 SQLAlchemy
-Flask-Caching
 Flask-JSON
-Flask-Session
-flask-socketio
-pandas
 cerberus
 zope.component
 zope.interface

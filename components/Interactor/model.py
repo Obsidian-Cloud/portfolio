@@ -1,16 +1,23 @@
 # model.py
 from dataclasses import dataclass
-from datetime import datetime
+from dataclasses import asdict
+from typing import Optional
 
 # plain old python objects
 # data classes for mapping imperatively
-@dataclass(frozen=True)
+@dataclass#(frozen=True)
 class OrmLabs:
+    id: int
+    user_cookie: str
     name: str
-    note: str
+    note: Optional[str]
     level: int
     active: bool
-    updated: datetime
+    updated: str
+
+    def to_dict(self):
+        return asdict(self)
+
 
 @dataclass
 class Movie:

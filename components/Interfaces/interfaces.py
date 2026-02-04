@@ -16,9 +16,9 @@ class IComposer(_z.Interface):
     """This `interface` shares a relationship with the `composer` and is
     implemented by the `routes` to initiate a request.
     """
-    def execute_composer(): # type: ignore
+    def execute_composer(query=None, cookie_val=None): # type: ignore
         """Executes the `composer`."""
-        return response #type: ignore
+        return response # type: ignore
 
 
 class IMapper(_z.Interface):
@@ -26,14 +26,9 @@ class IMapper(_z.Interface):
     implemented by the `composer` to initiate abstracted ORM CRUD 
     operations.
     """
-    def insert_row(): # type: ignore
-        """Inserts a row"""
-
-    def update_row(): # type: ignore
-        """Updates a row"""
-
-    def delete_row(): # type: ignore
-        """Deletes a row"""
+    def execute_mapper(json=None, cookie_val=None): # type: ignore
+        """Executes the mapper"""
+        return response # type: ignore
 
 
 class IResponse(_z.Interface):
@@ -48,5 +43,5 @@ class ILoader(_z.Interface):
     """This `interface` shares a relationship with the `projects` and is
     implemented by the `mapper` to load projects. 
     """
-    def start_mapper(model): #type: ignore
+    def start_mapper(model): # type: ignore
         """starts a mapper for the DB connection"""
