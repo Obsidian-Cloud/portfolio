@@ -1,12 +1,5 @@
 {% extends "layout.html" %}
 
-{% block head %}
-
-    <title>Project Selection</title>
-
-{% endblock %}
-
-
 {% block body %}
     <section>
     <div id="index-main">
@@ -70,25 +63,16 @@
 
             <div id="index-topright">
             <div id="index-myportfolio-cntr">
-                {% if portfolio %}
-                    <section hidden>
-                    <div><h2 class="index-myportfolio">My Portfolio</h2></div>
-                    </section>
-                    <div style="padding: 45px 20px 10px 20px;"><h4 class="index-selectproject">Select a project to view:</h4></div>
+                <section hidden>
+                <div><h2 class="index-myportfolio">My Portfolio</h2></div>
+                </section>
+                <div style="padding: 45px 20px 10px 20px;"><h4 class="index-selectproject">Select a project to view:</h4></div>
 
-                    <ol>
-                        {% for portfolio_project in portfolio  %}
-
-                            <li class="index-list-projects"><a class="href" href="/{{ portfolio_project }}">{{ portfolio_project }}</a></li>
-
-                        {% endfor %}
-                    </ol>
-
-                {% else %}
-            
-                    There are no portfolio projects!
-
-                {% endif %}
+                <ol>
+                    <li class="index-list-projects"><a class="href" href="/ormlabs/">ORM Labs</a></li>
+                    <li class="index-list-projects"><a class="href" href="https://github.com/Obsidian-Cloud/portfolio" target="_blank">Portfolio open-source</a></li>
+                    <li class="index-list-projects"><a class="href" href="https://github.com/Obsidian-Cloud/EZModuleManager" target="_blank">Service Locator</a></li>
+                </ol>
             </div>
             </div>
 
@@ -102,21 +86,21 @@
                 <div class="block" id="frame">
                     <strong><span class="h5">Framework:</span></strong><br>
                         <ul class="ulist">
-                            <div class="ulist-item"><li><a class="href" target="_blank" href="https://flask-session.readthedocs.io/en/latest/">Flask</a></li></div>
+                            <div class="ulist-item"><li>Flask</li></div>
                         </ul>
                 </div>
                 <div class="block" id="lang">
                     <strong><span class="h5">Technologies:</span></strong><br>
                         <div style="display: flex; column-gap: 25px;">
                         <ul  class="ulist">
-                            <div class="ulist-item"><li><a class="href" target="_blank" href="https://docs.python.org/3/">Python</a></li></div>
-                            <div class="ulist-item"><li><a class="href" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">Javascript</a></li></div>
-                            <div class="ulist-item"><li><a class="href" target="_blank" href="">Typescript</a></li></div>
+                            <div class="ulist-item"><li>Python</li></div>
+                            <div class="ulist-item"><li>Javascript</li></div>
+                            <div class="ulist-item"><li>Typescript</li></div>
                         </ul>
                         <ul  class="ulist">
-                            <div class="ulist-item"><li><a class="href" target="_blank" href="">SQLite3</a></li></div>
-                            <div class="ulist-item"><li><a class="href" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/HTML">HMTL</a></li></div>
-                            <div class="ulist-item"><li><a class="href" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a></li></div>
+                            <div class="ulist-item"><li>SQLite3</li></div>
+                            <div class="ulist-item"><li>HMTL</li></div>
+                            <div class="ulist-item"><li>CSS</li></div>
                         </ul>
                         </div>
                 </div>
@@ -124,8 +108,8 @@
                     <strong><span class=h5>Libraries:</span></strong><br>
                         <div style="display: flex; column-gap: 25px;">
                         <ul class="ulist">
-                            <div class="ulist-item"><li><a class="href" target="_blank" href="https://docs.sqlalchemy.org/en/20/">SQLAlchemy</a></li></div>
-                            <div class="ulist-item"><li><a class="href" target="_blank" href="">Flask-JSON</a></li></div>
+                            <div class="ulist-item"><li>SQLAlchemy</li></div>
+                            <div class="ulist-item"><li>Flask-JSON</li></div>
                         </ul>
                         <ul class="ulist">
                             <div class="ulist-item"><li>zope.interface</li></div>

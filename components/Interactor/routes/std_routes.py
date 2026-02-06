@@ -12,15 +12,10 @@ from components.Interfaces.interfaces import IComposer
 
 std_routes_bp = Blueprint('std_routes', __name__)
 
-# Routes for portfolio selection on index ('/')
-portfolio = ["ormlabs", "github"]
-
-
-
 @std_routes_bp.route("/")
 def index():
 
-    return render_template("index.html", portfolio=portfolio)
+    return render_template("index.html")
 
 
 @std_routes_bp.route("/movie-search/")
@@ -43,33 +38,17 @@ def ormlabs():
     rows = implementation.execute_composer(query=True, cookie_val=session['user_cookie'])
     return render_template("ormlabs.html", rows=rows)
 
-
-@std_routes_bp.route("/github")
+@std_routes_bp.route("/github/")
 def githubviewer():
 
     return render_template("github.html")
-
 
 @std_routes_bp.route("/contact-me/")
 def contactme():
 
     return render_template("contact_me.html")
 
-
-@std_routes_bp.route("/projects/")
-def reviewboard():
-    
-    return render_template("projects.html")
-
-
 @std_routes_bp.route("/portfolio-diagram/")
 def portfolio_diagram():
     
     return render_template("portfolio_diagram.html")
-
-
-
-# API Calls
-
-#@app.route("/")
-

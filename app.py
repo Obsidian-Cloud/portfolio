@@ -1,5 +1,6 @@
 # app.py
 import logging
+import os
 
 from flask import Flask
 from flask_json import FlaskJSON
@@ -24,29 +25,43 @@ from components.Interfaces.interfaces import ILoader
 import mimetypes
 
 mimetypes.add_type('text/javascript', '.mjs')
-
+# currently using in routes...minimally.
 logging.basicConfig(filename='portfolio.log')
 
 ### App Construction
-# Construct the Flask app using the apps `__name__` dunder
-app = Flask(__name__, static_folder='')
-# Initialize Flask-JSON by passing the Flask app into the constructor
+# construct the Flask app using the apps `__name__` dunder
+app = Flask(__name__)
+# initialize Flask-JSON by passing the Flask app into the constructor
 FlaskJSON(app)
 
 ### App Configuration
-# cookies(session object)
-app.config['SECRET_KEY'] = 'c34307275db9d9799ce0af21785ae1ead8fbeafcc21152fc5e420b6f5c2b72a1'
-# True for cookies over HTTPS only. False for localhost development.
+# set required secret key
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+# True for cookies over HTTPS only. False for localhost(HTTP) development.
+# .dev domains require SSL since browsers access .dev over HTTPS 
+# only. Might as well set it True for production.
 app.config['SESSION_COOKIE_SECURE'] = False
 # cookies expiration
-app.config["PERMANENT_SESSION_LIFETIME"] = 86400
+app.config["PERMANENT_SESSION_LIFETIME"] = 259200
 
 ### Engine Configuration
+basedir = os.path.abspath(os.path.dirname(__file__))
+db_path = os.path.join(basedir, 'ormlabs.db')
+
+engine = create_engine(
+    f'sqlite:///{db_path}'
+)
+## Alternate Engine Configuration
+# for testing to create a local engine.
+# the way this 'local' engine is implemented was a time constraint.
+# it would usually be done with a switch.
+'''
 engine = create_engine(
     'sqlite:///ormlabs.db',
     connect_args={'autocommit': False}
 )
-        
+'''
+     
 ### Route Configuration
 # Register blueprints to externally expand the API through other modules.
 app.register_blueprint(std_routes.std_routes_bp)
