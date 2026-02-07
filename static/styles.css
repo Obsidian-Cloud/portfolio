@@ -185,9 +185,10 @@
 {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
     padding-bottom: 10vh;
     padding-top: 5vh;
+    border: 3px solid purple;
 }
 
 #index-leftside
@@ -244,14 +245,16 @@
     
     max-width: 700px;
     row-gap: 40px;
+    border: 3px solid red;
 }
 
 #index-blocks-cntr
 {
     display: flex;
     flex-direction: column;
-    justify-content: stretch;
     row-gap: 5px;
+    border: 3px solid pink;
+
 }
 
 .block
@@ -419,39 +422,6 @@
 }
 
 
-
-/* //// MOVIE_SEARCH.HTML //// */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .warning
 {
     padding: 0px 25px 0px 25px;
@@ -548,13 +518,6 @@ input:focus
     height: 10px;
     border-color: rgb(24, 24, 24);
 }
-
-
-
-
-
-
-
 
 
 /* //// ORMLABS.HTML //// */
@@ -668,9 +631,9 @@ h4
 {
     /* MATCHES SQUARE BOX GEOMETRY */
     width: 100%;
-    height: 50px;           /* Same height as your squares */
-    border-radius: 8px;     /* Same smooth corners as your squares */
-    border: 2px solid #5b5b5b; /* Same border thickness as the boxes */
+    height: 50px;
+    border-radius: 8px;
+    border: 2px solid #5b5b5b;
 }
 
 #dev-panel-terminal-cntr
@@ -752,8 +715,10 @@ h4
     border: 1px solid grey;
 }
 
-
-
+#diagram-summary
+{
+    padding: 0px 150px 0px 150px;
+}
 
 #diagram 
 {
@@ -761,7 +726,6 @@ h4
     background-image: url('project_diagram.png');
     background-repeat: no-repeat;
     background-size: auto;
-    background-attachment:scroll;
     background-position: center;
     padding: 0px;
     margin: 0px;
@@ -779,5 +743,3 @@ h4
     border-radius: 15px;
     font-size: 18px;
 }
-
-
