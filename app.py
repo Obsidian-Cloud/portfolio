@@ -1,4 +1,5 @@
 # app.py
+import mimetypes
 import logging
 import os
 
@@ -22,7 +23,6 @@ from components.Interfaces.interfaces import IComposer
 from components.Interfaces.interfaces import IValidator
 from components.Interfaces.interfaces import IMapper
 from components.Interfaces.interfaces import ILoader
-import mimetypes
 
 mimetypes.add_type('text/javascript', '.mjs')
 # currently using in routes...minimally.
@@ -36,7 +36,9 @@ FlaskJSON(app)
 
 ### App Configuration
 # set required secret key
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+#app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+
+app.config['SECRET_KEY'] = '192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
 # True for cookies over HTTPS only. False for localhost(HTTP) development.
 # .dev domains require SSL since browsers access .dev over HTTPS 
 # only. Might as well set it True for production.
@@ -45,22 +47,23 @@ app.config['SESSION_COOKIE_SECURE'] = False
 app.config["PERMANENT_SESSION_LIFETIME"] = 259200
 
 ### Engine Configuration
-basedir = os.path.abspath(os.path.dirname(__file__))
-db_path = os.path.join(basedir, 'ormlabs.db')
+#basedir = os.path.abspath(os.path.dirname(__file__))
+#db_path = os.path.join(basedir, 'ormlabs.db')
 
-engine = create_engine(
-    f'sqlite:///{db_path}'
-)
+#engine = create_engine(
+#    f'sqlite:///{db_path}'
+#)
+
 ## Alternate Engine Configuration
 # for testing to create a local engine.
 # the way this 'local' engine is implemented was a time constraint.
 # it would usually be done with a switch.
-'''
+
 engine = create_engine(
     'sqlite:///ormlabs.db',
     connect_args={'autocommit': False}
 )
-'''
+
      
 ### Route Configuration
 # Register blueprints to externally expand the API through other modules.
@@ -74,7 +77,6 @@ classImplements(composer.Composer, IComposer)
 classImplements(validator.Validator, IValidator)
 classImplements(mapper.Mapper, IMapper)
 classImplements(orm_labs_map.Map, ILoader)
-#classImplements(io_routes._Response, IResponse)
 
 # Register class instances with interfaces
 composer_instance = composer.Composer()
@@ -85,14 +87,6 @@ orm_labs_map_instance = orm_labs_map.Map()
 provideUtility(orm_labs_map_instance, ILoader)
 mapper_instance = mapper.Mapper(engine)
 provideUtility(mapper_instance, IMapper)
-#response_instance = io_routes._Response()
-#provideUtility(response_instance, IResponse)
-
-
-
-
-
-
 
 
 if __name__=='__main__':
